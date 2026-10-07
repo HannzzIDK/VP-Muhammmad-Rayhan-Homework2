@@ -14,18 +14,58 @@ class UserStatsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
     return Container(
-      padding: const EdgeInsets.all(16.0),
-      color: Colors.blue.shade50,
+      padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+      color: colorScheme.primaryContainer,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
-            'Level: $level',
-            style: const TextStyle(fontWeight: FontWeight.bold),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'LEVEL SAAT INI',
+                style: textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onPrimaryContainer,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              Text(
+                '$level',
+
+                style: textTheme.displaySmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.primary,
+                ),
+              ),
+            ],
           ),
-          Text('EXP: $exp / 100'),
-          Text('Koin: $coins'),
+
+          // Elemen pendukung (EXP dan Koin) tetap menggunakan ukuran standar
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'EXP: $exp / 100',
+                style: textTheme.bodyLarge?.copyWith(
+                  color: colorScheme.onPrimaryContainer,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Koin: $coins',
+                style: textTheme.bodyLarge?.copyWith(
+                  color: colorScheme.onPrimaryContainer,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
